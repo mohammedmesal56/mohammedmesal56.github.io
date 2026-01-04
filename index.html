@@ -5,7 +5,674 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio & CV</title>
     <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script><!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Mishal - Portfolio</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#3b82f6', // Blue-500 (Brighter for dark mode)
+                        darkbg: '#020617', // Slate-950 (Main Background)
+                        cardbg: '#0f172a', // Slate-900 (Card Background)
+                        accent: '#f97316', // Orange-500 (Highlights/CTA)
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles for nuances not covered by utilities */
+        .glass-nav {
+            background: transparent; /* Removed background */
+            border-bottom: none; /* Removed border */
+        }
+        
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Mobile menu transition */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-400 bg-darkbg antialiased selection:bg-orange-500/30 selection:text-orange-200">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center self-start">
+                    <a href="#" class="block group hover:scale-105 transition-transform duration-200">
+                        <!-- UPDATED: Using specific logo filename provided by user -->
+                        <img src="./logo.png.png" 
+                             alt="mkmishal Logo" 
+                             class="h-32 w-auto object-contain">
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-slate-300 hover:text-primary font-medium transition-colors text-sm uppercase tracking-wide">Home</a>
+                    <a href="#about" class="text-slate-300 hover:text-primary font-medium transition-colors text-sm uppercase tracking-wide">About</a>
+                    <a href="#skills" class="text-slate-300 hover:text-primary font-medium transition-colors text-sm uppercase tracking-wide">Skills</a>
+                    <a href="#schedule" class="text-slate-300 hover:text-primary font-medium transition-colors text-sm uppercase tracking-wide">Schedule</a>
+                    <a href="#cv" class="text-slate-300 hover:text-primary font-medium transition-colors text-sm uppercase tracking-wide">CV</a>
+                    <a href="#contact" class="px-5 py-2 rounded-full bg-gradient-to-r from-primary to-blue-600 text-white font-medium hover:from-blue-600 hover:to-primary transition-all shadow-lg shadow-blue-500/20 text-sm">Contact Me</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="md:hidden bg-cardbg border-b border-slate-800">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="toggleMenu()">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="toggleMenu()">About</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="toggleMenu()">Skills</a>
+                <a href="#schedule" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="toggleMenu()">Schedule</a>
+                <a href="#cv" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800" onclick="toggleMenu()">CV</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-accent hover:bg-slate-800" onclick="toggleMenu()">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-1/4 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/10 rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-pulse"></div>
+            <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-orange-600/10 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-pulse delay-1000"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
+                
+                <!-- Left Column: Profile Image -->
+                <div class="lg:col-span-5 order-2 lg:order-1 relative flex justify-center lg:justify-start">
+                    <div class="relative w-72 h-72 sm:w-96 sm:h-96 group animate-float">
+                        <!-- Orbiting Elements/Glow -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-full opacity-30 group-hover:opacity-75 blur-xl transition duration-1000"></div>
+                        
+                        <!-- Main Image Container -->
+                        <div class="relative w-full h-full rounded-2xl overflow-hidden border-2 border-slate-700/50 bg-cardbg shadow-2xl transform transition-transform duration-500 ease-out hover:scale-[1.02] hover:border-primary/50">
+                            <div class="absolute inset-0 bg-gradient-to-t from-darkbg/90 via-transparent to-transparent z-10"></div>
+                            <!-- UPDATED: Using specific profile filename provided by user -->
+                            <img src="./profile.jpeg.jpeg" alt="Mohammed Mesal" class="object-cover w-full h-full transform scale-105 group-hover:scale-110 transition-transform duration-700" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'bg-slate-800 w-full h-full flex flex-col items-center justify-center text-slate-500 border border-slate-700\'><i class=\'fas fa-user text-6xl mb-4 text-primary\'></i><p class=\'text-xs text-center px-4\'>Image not found.<br>Ensure file exists: profile.jpeg.jpeg</p></div>'">
+                            
+                            <!-- Floating Info Card -->
+                            <div class="absolute bottom-6 left-6 right-6 z-20 bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-xl translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-green-500 w-2.5 h-2.5 rounded-full animate-ping"></div>
+                                    <span class="text-white text-xs font-bold tracking-wide uppercase">Open to Opportunities</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Text Content -->
+                <div class="lg:col-span-7 order-1 lg:order-2 text-center lg:text-left mb-12 lg:mb-0">
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-accent uppercase bg-accent/10 border border-accent/20 rounded-full mb-2">
+                            Hello, I'm
+                        </div>
+                        
+                        <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-white tracking-tight leading-none">
+                            MOHAMMED <br>
+                            <span class="text-primary">MISHAL</span>
+                        </h1>
+                        
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-300 flex flex-col lg:flex-row gap-2 lg:items-center justify-center lg:justify-start">
+                            <span>Management Information Systems (MIS) Student</span>
+                        </h2>
+
+                        <p class="text-lg text-slate-400 font-light max-w-2xl mx-auto lg:mx-0 leading-relaxed border-l-4 border-primary/30 pl-6">
+                            My academic focus is on integrating business requirements with information systems and technology solutions.
+                            I analyze data and organizational systems to improve efficiency, effectiveness, and decision support.
+                        </p>
+
+                        <!-- Social Links -->
+                        <div class="flex items-center justify-center lg:justify-start pt-8">
+                            <div class="flex gap-4">
+                                <!-- GitHub Link -->
+                                <a href="https://github.com/" target="_blank" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-black transition-all">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <!-- Instagram Link -->
+                                <a href="https://www.instagram.com/mii_shaarii/?hl=es-la" target="_blank" class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-pink-600 transition-all">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-darkbg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">About Me</h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                   <h3 class="text-2xl font-bold text-slate-200 mb-6">Mohammed Mishal</h3>
+                   <div class="text-slate-400 leading-relaxed space-y-6 text-lg">
+                       <p>
+                           Hello! My name is Mohammed Mishal. I study Management Information Systems at Topkapi University. I’m a Management Information Systems (MIS) student with a strong interest in connecting business needs with technology-driven solutions.
+                       </p>
+                       <p>
+                           I enjoy analyzing systems, working with data, and building efficient digital solutions. Through my studies, I’ve gained experience in information systems, databases, and web technologies, and I’m continuously working to improve my technical and analytical skills.
+                       </p>
+                       <p>
+                           Outside of academics, I enjoy reading science-fiction books to expand my knowledge and explore ideas about future technologies. I believe in continuous learning and strive to stay updated with emerging technologies and industry trends.
+                       </p>
+                   </div>
+                </div>
+
+                <!-- Browser/Frame Mockup -->
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-xl opacity-20 group-hover:opacity-40 blur transition duration-500"></div>
+                    <div class="relative rounded-xl bg-cardbg border border-slate-800 shadow-2xl overflow-hidden">
+                        <!-- Window Controls -->
+                        <div class="flex items-center gap-2 px-4 py-3 bg-slate-900/50 border-b border-slate-800">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <div class="ml-4 px-3 py-1 bg-slate-800 rounded text-[10px] text-slate-500 font-mono flex items-center gap-2">
+                                <i class="fas fa-lock text-[8px]"></i> topkapi.edu.tr
+                            </div>
+                        </div>
+                        <!-- Frame Content -->
+                        <div class="relative aspect-video bg-white flex items-center justify-center overflow-hidden">
+                             <iframe src="https://www.topkapi.edu.tr/" class="w-full h-full border-0" title="Topkapi University Website"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section (Replaced Portfolio) -->
+    <section id="skills" class="py-24 bg-cardbg/30 border-y border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">My Skills</h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+                <p class="text-slate-400 mt-4 max-w-2xl mx-auto">
+                    A collection of the technologies and tools I work with to build efficient digital solutions.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Skill 1: Excel -->
+                <div class="group p-8 bg-cardbg rounded-2xl border border-slate-800 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-slate-800/50 flex items-center justify-center mb-6 group-hover:bg-green-500/10 transition-colors">
+                        <i class="fas fa-file-excel text-3xl text-green-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Excel</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        I utilize Microsoft Excel for complex data management and financial modeling. My expertise includes advanced formulas, pivot tables, and data visualization to streamline business reporting and analysis.
+                    </p>
+                </div>
+                
+                <!-- Skill 2: Python -->
+                <div class="group p-8 bg-cardbg rounded-2xl border border-slate-800 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-slate-800/50 flex items-center justify-center mb-6 group-hover:bg-blue-500/10 transition-colors">
+                        <i class="fab fa-python text-3xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Python</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        I use Python to automate tasks and perform in-depth data analysis. With libraries like Pandas and NumPy, I process large datasets and build efficient backend solutions for various applications.
+                    </p>
+                </div>
+
+                <!-- Skill 3: Data Analysis -->
+                <div class="group p-8 bg-cardbg rounded-2xl border border-slate-800 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-slate-800/50 flex items-center justify-center mb-6 group-hover:bg-orange-500/10 transition-colors">
+                        <i class="fas fa-chart-line text-3xl text-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Data Analysis</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        I focus on interpreting complex datasets to uncover trends and patterns. By applying statistical analysis and logical reasoning, I provide actionable insights that drive strategic business decisions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section (New Location) -->
+    <section id="schedule" class="py-24 bg-cardbg/30 border-y border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="mb-12 text-center">
+                <h2 class="text-3xl font-bold text-white mb-2">Weekly Schedule</h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-400">University Course Schedule</p>
+            </div>
+
+            <div class="overflow-hidden rounded-2xl border border-slate-800 bg-cardbg shadow-xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-900/50 border-b border-slate-800">
+                                <th class="p-4 font-bold text-slate-400 text-xs uppercase tracking-wider w-24 text-center">Time</th>
+                                <th class="p-4 font-bold text-slate-400 text-xs uppercase tracking-wider min-w-[120px] text-center">Monday</th>
+                                <th class="p-4 font-bold text-slate-400 text-xs uppercase tracking-wider min-w-[120px] text-center">Tuesday</th>
+                                <th class="p-4 font-bold text-slate-400 text-xs uppercase tracking-wider min-w-[120px] text-center">Wednesday</th>
+                                <th class="p-4 font-bold text-slate-400 text-xs uppercase tracking-wider min-w-[120px] text-center">Thursday</th>
+                                <th class="p-4 font-bold text-slate-400 text-xs uppercase tracking-wider min-w-[120px] text-center">Friday</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 text-sm">
+                            <!-- 09:00 - 10:00 -->
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-bold text-primary whitespace-nowrap border-r border-slate-800 bg-slate-900/30 text-center">09:00</td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                                <td class="p-2 text-center">
+                                    <div class="bg-teal-500/10 text-teal-400 p-2 rounded border border-teal-500/20 text-xs font-bold">
+                                        Web Design
+                                        <div class="font-normal opacity-70 mt-1">09:00 - 12:00</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                            </tr>
+
+                            <!-- 10:00 - 11:00 -->
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-bold text-primary whitespace-nowrap border-r border-slate-800 bg-slate-900/30 text-center">10:00</td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                                <td class="p-2 text-center">
+                                    <div class="bg-orange-500/10 text-orange-400 p-2 rounded border border-orange-500/20 text-xs font-bold">
+                                        Data Structure & DB
+                                        <div class="font-normal opacity-70 mt-1">10:00 - 12:00</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                                <td class="p-2 text-center">
+                                    <div class="bg-teal-500/10 text-teal-400 p-2 rounded border border-teal-500/20 text-xs font-bold">
+                                        Web Design
+                                        <div class="font-normal opacity-70 mt-1">Continued</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                            </tr>
+
+                            <!-- 11:00 - 12:00 -->
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-bold text-primary whitespace-nowrap border-r border-slate-800 bg-slate-900/30 text-center">11:00</td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                                <td class="p-2 text-center">
+                                    <div class="bg-orange-500/10 text-orange-400 p-2 rounded border border-orange-500/20 text-xs font-bold">
+                                        Data Structure & DB
+                                        <div class="font-normal opacity-70 mt-1">Continued</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                                <td class="p-2 text-center">
+                                    <div class="bg-teal-500/10 text-teal-400 p-2 rounded border border-teal-500/20 text-xs font-bold">
+                                        Web Design
+                                        <div class="font-normal opacity-70 mt-1">Continued</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                            </tr>
+
+                            <!-- 12:00 - 13:00 -->
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-bold text-primary whitespace-nowrap border-r border-slate-800 bg-slate-900/30 text-center">12:00</td>
+                                <td class="p-2 text-center">
+                                    <div class="bg-blue-500/10 text-blue-400 p-2 rounded border border-blue-500/20 text-xs font-bold">
+                                        Mgmt & Organization
+                                        <div class="font-normal opacity-70 mt-1">12:00 - 15:00</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center">
+                                    <div class="bg-green-500/10 text-green-400 p-2 rounded border border-green-500/20 text-xs font-bold">
+                                        Marketing
+                                        <div class="font-normal opacity-70 mt-1">12:00 - 15:00</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                            </tr>
+
+                            <!-- 13:00 - 14:00 -->
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-bold text-primary whitespace-nowrap border-r border-slate-800 bg-slate-900/30 text-center">13:00</td>
+                                <td class="p-2 text-center">
+                                    <div class="bg-blue-500/10 text-blue-400 p-2 rounded border border-blue-500/20 text-xs font-bold">
+                                        Mgmt & Organization
+                                        <div class="font-normal opacity-70 mt-1">Continued</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center">
+                                    <div class="bg-green-500/10 text-green-400 p-2 rounded border border-green-500/20 text-xs font-bold">
+                                        Marketing
+                                        <div class="font-normal opacity-70 mt-1">Continued</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center">
+                                    <div class="bg-purple-500/10 text-purple-400 p-2 rounded border border-purple-500/20 text-xs font-bold">
+                                        Business Process Analysis
+                                        <div class="font-normal opacity-70 mt-1">13:00 - 16:00</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                            </tr>
+
+                            <!-- 14:00 - 15:00 -->
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-bold text-primary whitespace-nowrap border-r border-slate-800 bg-slate-900/30 text-center">14:00</td>
+                                <td class="p-2 text-center">
+                                    <div class="bg-blue-500/10 text-blue-400 p-2 rounded border border-blue-500/20 text-xs font-bold">
+                                        Mgmt & Organization
+                                        <div class="font-normal opacity-70 mt-1">Continued</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center">
+                                    <div class="bg-green-500/10 text-green-400 p-2 rounded border border-green-500/20 text-xs font-bold">
+                                        Marketing
+                                        <div class="font-normal opacity-70 mt-1">Continued</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center">
+                                    <div class="bg-purple-500/10 text-purple-400 p-2 rounded border border-purple-500/20 text-xs font-bold">
+                                        Business Process Analysis
+                                        <div class="font-normal opacity-70 mt-1">Continued</div>
+                                    </div>
+                                </td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                                <td class="p-2 text-center text-slate-600">--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section id="cv" class="py-24 bg-darkbg">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">Curriculum Vitae</h2>
+                <p class="text-slate-400">My educational and professional journey.</p>
+                <div class="mt-8">
+                    <button class="inline-flex items-center px-8 py-3 border border-slate-700 shadow-sm text-sm font-bold rounded-full text-white bg-slate-800 hover:bg-slate-700 transition-all hover:scale-105 group" onclick="alert('This would download your PDF!')">
+                        <i class="fas fa-file-pdf mr-2 text-red-500 group-hover:animate-bounce"></i> Download Resume
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Education -->
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-8 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center text-accent"><i class="fas fa-graduation-cap text-sm"></i></span>
+                        Education
+                    </h3>
+                    <div class="relative pl-8 space-y-10">
+                        <!-- Timeline Line -->
+                        <div class="absolute left-[15px] top-3 bottom-0 w-[2px] bg-slate-800"></div>
+
+                        <!-- Item 1 -->
+                        <div class="relative group">
+                            <div class="absolute -left-[30px] mt-1.5 h-4 w-4 rounded-full border-2 border-darkbg bg-accent shadow-[0_0_0_4px_rgba(249,115,22,0.2)]"></div>
+                            <span class="text-xs font-bold text-accent tracking-wide uppercase">Present</span>
+                            <h4 class="text-lg font-bold text-white mt-1 group-hover:text-accent transition-colors">Bachelor's Degree</h4>
+                            <p class="text-xs font-semibold text-slate-500 mb-3">Topkapi University • Istanbul</p>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Currently pursuing a Bachelor's in Management Information Systems. <br>
+                                <span class="text-primary font-semibold">Current GPA: 3.4/4.0</span>
+                            </p>
+                        </div>
+
+                         <!-- Item 2 -->
+                         <div class="relative group">
+                            <div class="absolute -left-[30px] mt-1.5 h-4 w-4 rounded-full border-2 border-darkbg bg-slate-600 group-hover:bg-primary transition-colors"></div>
+                            <span class="text-xs font-bold text-slate-500 tracking-wide uppercase">Completed</span>
+                            <h4 class="text-lg font-bold text-white mt-1 group-hover:text-primary transition-colors">High School Diploma</h4>
+                            <p class="text-xs font-semibold text-slate-500 mb-3">Bangladesh International School & College • Jeddah, KSA</p>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Completed high school education with outstanding academic performance. <br>
+                                <span class="text-primary font-semibold">GPA: 5.0/5.0</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proficiency -->
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-8 flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary"><i class="fas fa-laptop-code text-sm"></i></span>
+                        Skills & Expertise
+                    </h3>
+                    <div class="p-6 bg-cardbg rounded-2xl border border-slate-800">
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-xs font-bold text-slate-400 uppercase">MS Office Suite</span>
+                                    <span class="text-xs font-bold text-primary">Expert</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-1.5">
+                                    <div class="bg-primary h-1.5 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.5)]" style="width: 100%"></div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2">Advanced proficiency in Excel, Word, and PowerPoint for professional documentation and analysis.</p>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-xs font-bold text-slate-400 uppercase">Database Management</span>
+                                    <span class="text-xs font-bold text-accent">85%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-1.5">
+                                    <div class="bg-accent h-1.5 rounded-full shadow-[0_0_10px_rgba(249,115,22,0.5)]" style="width: 85%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-xs font-bold text-slate-400 uppercase">Data Analysis</span>
+                                    <span class="text-xs font-bold text-blue-400">80%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-1.5">
+                                    <div class="bg-blue-400 h-1.5 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-darkbg relative overflow-hidden">
+        <!-- Footer Blur -->
+        <div class="absolute bottom-0 left-1/2 -ml-40 w-80 h-80 bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] opacity-30 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-6">Let's work together</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center p-4 bg-cardbg rounded-xl border border-slate-800 hover:border-primary/50 transition-colors">
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wide">Email</h4>
+                                <a href="mailto:mohammedmesal367@gmail.com" class="text-white font-semibold hover:text-primary transition-colors">mohammedmesal367@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-cardbg rounded-xl border border-slate-800 hover:border-accent/50 transition-colors">
+                            <div class="flex-shrink-0 w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center text-accent">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wide">Location</h4>
+                                <p class="text-white font-semibold">Istanbul, Turkey</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h4 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">Connect</h4>
+                        <div class="flex space-x-4">
+                            <!-- GitHub Link -->
+                            <a href="https://github.com/" target="_blank" class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-white hover:text-black transition-all hover:-translate-y-1">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <!-- Instagram Link -->
+                            <a href="https://www.instagram.com/mii_shaarii/?hl=es-la" target="_blank" class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-gradient-to-tr hover:from-yellow-400 hover:via-red-500 hover:to-purple-500 hover:text-white transition-all hover:-translate-y-1">
+                                <i class="fab fa-instagram text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-cardbg p-8 rounded-3xl shadow-2xl border border-slate-800 relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <form onsubmit="event.preventDefault(); alert('Message sent! (This is a demo)');" class="relative z-10 space-y-6">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Name</label>
+                                <input type="text" id="name" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-slate-600" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Email</label>
+                                <input type="email" id="email" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-slate-600" placeholder="john@example.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-slate-600" placeholder="Project Inquiry">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder-slate-600" placeholder="Tell me about your project..."></textarea>
+                        </div>
+                        <div class="flex gap-4">
+                            <button type="submit" class="flex-1 w-full bg-gradient-to-r from-primary to-blue-600 hover:from-blue-600 hover:to-primary text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-blue-600/20 transform hover:-translate-y-1">
+                                Send Message
+                            </button>
+                            <button type="reset" class="px-6 py-4 rounded-xl border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-800 transition-all">
+                                Reset
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-darkbg text-slate-500 py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm">
+            <div class="mb-4 md:mb-0">
+                <p>&copy; 2024 MyPortfolio. All rights reserved.</p>
+            </div>
+            <div class="flex space-x-8">
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            menu.classList.toggle('open');
+            const icon = btn.querySelector('i');
+            if (menu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
+
+        // Sticky Navbar Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-lg', 'bg-darkbg/90');
+                navbar.classList.remove('glass-nav');
+            } else {
+                navbar.classList.remove('shadow-lg', 'bg-darkbg/90');
+                navbar.classList.add('glass-nav');
+            }
+        });
+    </script>
+</body>
+</html>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
@@ -666,4 +1333,5 @@
         });
     </script>
 </body>
+
 </html>
